@@ -1,0 +1,88 @@
+{
+ "cards": [
+  {
+   "card": "ABUDHABI LINE"
+  },
+  {
+   "card": "AL FAYA LINE"
+  },
+  {
+   "card": "COUNTER"
+  },
+  {
+   "card": "GAYATHI LINE"
+  },
+  {
+   "card": "I CAD LINE"
+  },
+  {
+   "card": "MBZ LINE"
+  },
+  {
+   "card": "MUSAFFAH LINE"
+  },
+  {
+   "card": "SANAYYA LINE"
+  },
+  {
+   "card": "SHABIYA LINE"
+  },
+  {
+   "card": "SHAHAMA LINE"
+  }
+ ],
+ "charts": [
+  {
+   "chart": "ABUDHABI LINE",
+   "width": "Half"
+  },
+  {
+   "chart": "AL FAYA LINE",
+   "width": "Half"
+  },
+  {
+   "chart": "COUNTER",
+   "width": "Half"
+  },
+  {
+   "chart": "GAYATHI LINE",
+   "width": "Half"
+  },
+  {
+   "chart": "I CAD LINE",
+   "width": "Half"
+  },
+  {
+   "chart": "MBZ Line",
+   "width": "Half"
+  },
+  {
+   "chart": "MUSAFFAH LINE",
+   "width": "Half"
+  },
+  {
+   "chart": "SANAYYA LINE",
+   "width": "Half"
+  },
+  {
+   "chart": "SHABIYA LINE",
+   "width": "Half"
+  },
+  {
+   "chart": "SHAHAMA LINE",
+   "width": "Half"
+  }
+ ],
+ "creation": "2023-12-30 02:15:12.137590",
+ "dashboard_name": "Sales Dashboard",
+ "docstatus": 0,
+ "doctype": "Dashboard",
+ "idx": 0,
+ "is_default": 0,
+ "is_standard": 1,
+ "modified": "2023-12-30 02:15:12.137590",
+ "modified_by": "Administrator",
+ "module": "Tuwairish",
+ "name": "Sales Dashboard",
+ "owner": "Administrator"
+}
