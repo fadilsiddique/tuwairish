@@ -13,7 +13,7 @@ app_license = "mit"
 # app_include_css = "/assets/tuwairish/css/tuwairish.css"
 # app_include_js = "/assets/tuwairish/js/tuwairish.js"
 
-app_include_js = ["/assets/tuwairish/js/last_selling_price.js","/assets/tuwairish/js/last_buying_price.js"]
+# app_include_js = ["/assets/tuwairish/js/last_selling_price.js","/assets/tuwairish/js/last_buying_price.js"]
 
 
 # include js, css files in header of web template
