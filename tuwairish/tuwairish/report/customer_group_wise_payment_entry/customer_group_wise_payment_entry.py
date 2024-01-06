@@ -33,7 +33,7 @@ def get_data(filters):
         JOIN
             `tabCustomer` cu ON pe.party = cu.name
         WHERE
-            pe.docstatus = 1 {conditions}
+            pe.docstatus != 2 {conditions}
     """.format(conditions=conditions)
 
     data = frappe.db.sql(query, values, as_dict=1)
