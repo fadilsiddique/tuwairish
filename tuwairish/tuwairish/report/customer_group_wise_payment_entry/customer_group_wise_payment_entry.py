@@ -48,8 +48,9 @@ def get_conditions(filters):
         conditions += " AND cu.customer_group = %(customer_group)s"
         values["customer_group"] = filters["customer_group"]
 
-    if filters.get("posting_date"):
-        conditions += " AND pe.posting_date = %(posting_date)s"
-        values["posting_date"] = filters["posting_date"]
+    if filters.get("from_date") and filters.get("to_date"):
+        conditions += " AND pe.posting_date BETWEEN %(from_date)s AND %(to_date)s"
+        values["from_date"] = filters["from_date"]
+        values["to_date"] = filters["to_date"]
 
     return conditions, values
