@@ -1,26 +1,50 @@
+# Import necessary Frappe modules
 import frappe
 
 @frappe.whitelist()
-def get_selling_price(item_code,customer):
-    invoice_exists=frappe.db.exists('Sales Invoice',{'customer':customer})
-    message=None
-    if invoice_exists:
-        last_invoice = frappe.get_last_doc('Sales Invoice', filters={"customer": customer,"docstatus":1})
-        if last_invoice:
-            for item in last_invoice.items:
-                if item.item_code == item_code:
-                    message = item.rate
-    return message
+def customer_selling_price(customer, item_code):
+    prices = frappe.db.sql("""
+        SELECT
+            si.customer_name,
+            si.name AS invoice_name,
+            si_item.rate,
+            si.posting_date AS date,
+            si_item.qty
+        FROM
+            `tabSales Invoice` si
+        JOIN
+            `tabSales Invoice Item` si_item ON si.name = si_item.parent
+        WHERE
+            si.customer = %(customer)s AND
+            si_item.item_code = %(item_code)s AND
+            si.docstatus IN (0, 1) AND
+            si.is_return != 1
+        ORDER BY
+            si.posting_date DESC
+        LIMIT 10
+    """, {'customer': customer, 'item_code': item_code}, as_dict=1)
 
-@frappe.whitelist()
-def get_buying_price(item_code,supplier):
-    invoice_exists=frappe.db.exists('Purchase Invoice',{'supplier':supplier})
-    message=None
-    if invoice_exists:
-        last_invoice = frappe.get_last_doc('Purchase Invoice', filters={"supplier": supplier,"docstatus":1})
-        if last_invoice:
-            for item in last_invoice.items:
-                if item.item_code == item_code:
-                    message = item.rate
-    return message
-    
+    if not prices:
+        prices = frappe.db.sql("""
+            SELECT
+                si.customer_name,
+                si.name AS invoice_name,
+                si_item.rate,
+                si.posting_date AS date,
+                si_item.qty
+            FROM
+                `tabSales Invoice` si
+            JOIN
+                `tabSales Invoice Item` si_item ON si.name = si_item.parent
+            WHERE
+                si_item.item_code = %(item_code)s AND
+                si.docstatus IN (0, 1) AND
+                si.is_return != 1 AND
+                si.customer != %(customer)s
+            ORDER BY
+                si.posting_date DESC
+            LIMIT 10
+        """, {'customer': customer, 'item_code': item_code}, as_dict=1)
+
+    return prices
+
